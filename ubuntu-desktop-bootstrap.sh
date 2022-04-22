@@ -10,24 +10,25 @@ if [ "$1" != "stage2" ]; then
   exit
 fi
 
-RESOURCES="http://example.com/resources"
+RESOURCES="https://gitlab.com/fuww/bootstrap"
 
 
 ###### PACKAGE MANAGEMENT & ADDITIONAL PACKAGES ######
 ######################################################
 
-# Add oracle-java-installer PPA:
-add-apt-repository -y ppa:webupd8team/java
+# # Add oracle-java-installer PPA:
+# add-apt-repository -y ppa:webupd8team/java
 
 # add gimp 2.8 repository
 add-apt-repository -y ppa:otto-kesselgulasch/gimp
 
-# accept oracle java license
-echo 'oracle-java7-installer shared/accepted-oracle-license-v1-1 select true' | sudo /usr/bin/debconf-set-selections
+# # accept oracle java license
+# echo 'oracle-java7-installer shared/accepted-oracle-license-v1-1 select true' | sudo /usr/bin/debconf-set-selections
 
 # Install packages from added repositories
 apt-get update
-apt-get install -y  gimp gimp-help-de oracle-java7-installer
+apt-get install -y  gimp gimp-help-nl 
+# oracle-java7-installer
 
 
 # Install appropriate graphics and wlan drivers
@@ -44,11 +45,11 @@ jockey-text --auto-install
 
 # Set locale
 cat > /etc/default/locale <<EOF
-LANG=de_CH.UTF-8
-LC_NUMERIC=de_CH.UTF-8
-LC_TIME=de_CH.UTF-8
-LC_MONETARY=de_CH.UTF-8
-LC_MEASUREMENT=de_CH.UTF-8
+LANG=en_US.UTF-8
+LC_NUMERIC=en_US.UTF-8
+LC_TIME=en_US.UTF-8
+LC_MONETARY=en_US.UTF-8
+LC_MEASUREMENT=en_US.UTF-8
 EOF
 
 # output from bash in not in German.
@@ -77,11 +78,11 @@ echo "nautilus-compare-notification $date_s 0" >> /etc/update-notifier/hooks_see
 ###########################################
 
 # get desktop-bootrap file
-wget -qO /root/desktop-bootstrap-user.sh "http://example.com/ubuntu-desktop-bootstrap-user.sh"
+wget -qO /root/desktop-bootstrap-user.sh "https://gitlab.com/fuww/bootstrap/-/raw/main/ubuntu-desktop-bootstrap-user.sh"
 chmod +x /root/desktop-bootstrap-user.sh
 
 # Activate firstboot-custom (user setup)
-wget -qO /etc/init/firstboot-custom.conf "http://example.com/firstboot-custom.conf"
+wget -qO /etc/init/firstboot-custom.conf "https://gitlab.com/fuww/bootstrap/-/raw/main/firstboot-custom.conf"
 
 # Installationsdatum speichern
 date +%c > /root/install-date

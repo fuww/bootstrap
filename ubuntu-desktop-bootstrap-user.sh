@@ -2,7 +2,7 @@
 # 2013-02-14 / philipp gassmann / gassmann@puzzle.ch
 
 CRYPT_OLDPW="temporarypassword"
-CRYPT_ADMINPW_SHA512="[long hash] -" # For verification
+CRYPT_ADMINPW_SHA512="$6$Ggd5B8I1SodDn64c$XvrPwt2sBO6ahMb1NMibCTM9wHW2dt6BI8GUzSqLPhniJKn6gqaBmLs8HL8FNySYZ4Sme/rqamcQDM8jqWchn1" # For verification
 
 set -x
 
@@ -130,7 +130,7 @@ fi
   old_hostname=`hostname`
   old_domainname=`domainname`
   new_hostname="$username-workstation"
-  new_domainname='example.com'
+  new_domainname='hq.fuww.nl'
 
   # change hostname in specific files
   sed -i "s/$old_hostname/$new_hostname/" /etc/ssh/ssh*key.pub
